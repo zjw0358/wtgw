@@ -1,5 +1,5 @@
 ﻿/*
-csc.exe .\*.cs  /define:SAZ_SUPPORT /r:Ionic.Zip.Reduced.dll /r:FiddlerCore.dll 
+*csc.exe .\*.cs  /define:SAZ_SUPPORT /r:Ionic.Zip.Reduced.dll /r:FiddlerCore.dll /main:Capture.Program
 
 * This demo program shows how to use the FiddlerCore library.
 * By default, it is compiled without support for the SAZ File format.
@@ -17,53 +17,17 @@ using Fiddler;
 using System.Collections.Generic;
 using System.Threading;
 using System.Reflection;
-using System.Xml;
+using System.Windows.Forms;
+
 
 namespace Capture
 {
-    class Program
+    class Program:Comman
     {
         static bool bUpdateTitle = true;
         static Proxy oSecureEndpoint;
         static string sSecureEndpointHostname = "localhost";
 
-        public static void WriteCommandResponse(string s)
-        {
-            ConsoleColor oldColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(s);
-            Console.ForegroundColor = oldColor;
-        }
-        
-         public static void WriteLog(string s)
-        {
-            ConsoleColor oldColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine(s);
-            Console.ForegroundColor = oldColor;
-        }
-        
-         public static void WriteHelp(string s)
-        {
-            ConsoleColor oldColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(s);
-            Console.ForegroundColor = oldColor;
-        }
-         public static void WriteWarning(string s)
-        {
-            ConsoleColor oldColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write(s);
-            Console.ForegroundColor = oldColor;
-        }
-         public static void WriteTest(string s)
-        {
-            ConsoleColor oldColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(s);
-            Console.ForegroundColor = oldColor;
-        }
         public static void DoQuit()
         {
             WriteCommandResponse("Shutting down...");
@@ -71,145 +35,34 @@ namespace Capture
             Fiddler.FiddlerApplication.Shutdown();
             Thread.Sleep(500);
         }
-        private static string Ellipsize(string s, int iLen)
-        {
-            if (s.Length <= iLen) return s;
-            return s.Substring(0, iLen - 3) + "...";
-        }
-
-#if SAZ_SUPPORT
-        private static void ReadSessions(List<Fiddler.Session> oAllSessions)
-        {
-            TranscoderTuple oImporter = FiddlerApplication.oTranscoders.GetImporter("SAZ");
-            
-            if (null != oImporter)
-            {
-          
-                Dictionary<string, object> dictOptions = new Dictionary<string, object>();
-                dictOptions.Add("Filename", Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\ToLoad.saz");
-
-                Session[] oLoaded = FiddlerApplication.DoImport("SAZ", false, dictOptions, null);
-
-                if ((oLoaded != null) && (oLoaded.Length > 0))
-                {
-                    oAllSessions.AddRange(oLoaded);
-                    WriteCommandResponse("Loaded: " + oLoaded.Length + " sessions.");
-                }
-            }
-        }         
         
-        private static void SaveSessionsToDesktop(List<Fiddler.Session> oAllSessions)
-        {
-            bool bSuccess = false;
-            //string sFilename = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
-                            //+ @"\" + DateTime.Now.ToString("hh-mm-ss") + ".saz";
-            string sFilename = @"log\" + DateTime.Now.ToString("hh-mm-ss") + ".saz";
-            try
-            {
-                try
-                {
-                    Monitor.Enter(oAllSessions);
-                    TranscoderTuple oExporter = FiddlerApplication.oTranscoders.GetExporter("SAZ");
-
-                    if (null != oExporter)
-                    {
-                        
-                        Dictionary<string, object> dictOptions = new Dictionary<string, object>();
-                        dictOptions.Add("Filename", sFilename);
-                        // dictOptions.Add("Password", "pencil");
-
-                        bSuccess = FiddlerApplication.DoExport("SAZ", oAllSessions.ToArray(), dictOptions, null);
-                    }
-                }
-                finally
-                {
-                    Monitor.Exit(oAllSessions);
-                }
-
-                WriteCommandResponse( bSuccess ? ("Wrote: " + sFilename) : ("Failed to save: " + sFilename) );
-            }
-            catch (Exception eX)
-            {
-                Console.WriteLine("Save failed: " + eX.Message);
-            }
-        }
-#endif
-
-        private static void WriteSessionList(List<Fiddler.Session> oAllSessions)
-        {
-            ConsoleColor oldColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Session list contains...");
-            try
-            {
-                Monitor.Enter(oAllSessions);
-                foreach (Session oS in oAllSessions)
-                {
-                    Console.Write(String.Format("{0} {1} {2}\n{3} \n{4}{5}\n\n", oS.id, oS.oRequest.headers.HTTPMethod, Ellipsize(oS.fullUrl, 60), Ellipsize(oS.GetRequestBodyAsString(),60),oS.responseCode, oS.oResponse.MIMEType));
-                }
-            }
-            finally
-            {
-                Monitor.Exit(oAllSessions);
-            }
-            Console.WriteLine();
-            Console.ForegroundColor = oldColor;
-        }
+        
 
         static void Main(string[] args)
         {
-        	int Port = 8877;
-        	string DomainFilter = "";
-        	int MaxLogLength = 200;
-        	XmlDocument Conf = new XmlDocument();
-        	string strConfFileName = @"capture.config";
-        	try
-        	{
-        		Conf.Load(strConfFileName);
-        		DomainFilter = Conf["configuration"]["domain"].InnerText;
-        		Port = int.Parse(Conf["configuration"]["port"].InnerText);
-        		MaxLogLength = int.Parse(Conf["configuration"]["maxloglength"].InnerText);
- 
-            }
-        	catch
-        	{
-        		XmlElement confRoot = Conf.CreateElement("configuration");
-        		Conf.AppendChild(confRoot);
-        		XmlElement confDomain = Conf.CreateElement("domain");
-        		WriteTest("Input domain you want to capture,default is all domain");
-        		confDomain.InnerText  = Console.ReadLine();
-        		DomainFilter = confDomain.InnerText;
-        		confRoot.AppendChild(confDomain);
-        		
-        		XmlElement confPort = Conf.CreateElement("port");
-        		WriteTest("Input portnumber your proxy open,default is 8899");
-        		confPort.InnerText  = Console.ReadLine();
-        		if (confPort.InnerText == ""){confPort.InnerText = "8899";}
-        		Port = int.Parse(confPort.InnerText);
-        		confRoot.AppendChild(confPort);
-        		
-        		XmlElement confMaxLogLength = Conf.CreateElement("maxloglength");
-        		WriteTest("Input a length auto save to disk,default is 200");
-        		confMaxLogLength.InnerText  = Console.ReadLine();
-        		if (confMaxLogLength.InnerText == ""){confMaxLogLength.InnerText = "200";}
-        		MaxLogLength = int.Parse(confMaxLogLength.InnerText);
-        		confRoot.AppendChild(confMaxLogLength);
-        		Conf.Save(strConfFileName);
-        	}
-        		
-        	
+            WriteHelp("Current hosts in system is :");
+            Config.LoadHosts();
+            //Config.AddHost("211.82.8.7", "c.com", "test", false,false);
+            Config.SetConfig();
+            
+
+
+
             List<Fiddler.Session> oAllSessions = new List<Fiddler.Session>();
-            
-            
+
+
             //if (args.Length == 0){
-            //	DomainFilter =  "renren.com";
+           //Config.DomainFilter =  "renren.com";
             //}
-            if (args.Length == 1){
-            	Port = int.Parse(args[0]);
+            if (args.Length == 1)
+            {
+                Application.EnableVisualStyles();
+                Application.Run(new Form1());
             }
-            if (args.Length == 2){
-            	Port = int.Parse(args[0]);
-            	DomainFilter = args[1];
+            if (args.Length == 2)
+            {
+                Config.Port = int.Parse(args[0]);
+                Config.DomainFilter = args[1];
             }
             #region AttachEventListeners
             //
@@ -224,28 +77,38 @@ namespace Capture
 
             // Simply echo notifications to the console.  Because Fiddler.CONFIG.QuietMode=true 
             // by default, we must handle notifying the user ourselves.
-            Fiddler.FiddlerApplication.OnNotification += delegate(object sender, NotificationEventArgs oNEA) { 
-            WriteLog("** NotifyUser: " + oNEA.NotifyString); 
+            Fiddler.FiddlerApplication.OnNotification += delegate(object sender, NotificationEventArgs oNEA)
+            {
+                WriteLog("** NotifyUser: " + oNEA.NotifyString);
             };
-            Fiddler.FiddlerApplication.Log.OnLogString += delegate(object sender, LogEventArgs oLEA) {
-                WriteLog("** LogString: " + oLEA.LogString); 
-             };
+            Fiddler.FiddlerApplication.Log.OnLogString += delegate(object sender, LogEventArgs oLEA)
+            {
+                WriteLog("** LogString: " + oLEA.LogString);
+            };
 
             Fiddler.FiddlerApplication.BeforeRequest += delegate(Fiddler.Session oS)
             {
-                if (oS.host.EndsWith(DomainFilter)){
-                //Console.WriteLine("Before request for:\t" + Ellipsize(oS.fullUrl,60));
-                
-                
-                // In order to enable response tampering, buffering mode MUST
-                // be enabled; this allows FiddlerCore to permit modification of
-                // the response in the BeforeResponse handler rather than streaming
-                // the response to the client as the response comes in.
-                oS.bBufferResponse = false;
-                Monitor.Enter(oAllSessions);
-                oAllSessions.Add(oS);
-                Monitor.Exit(oAllSessions);
+                if (oS.host.EndsWith(Config.DomainFilter))
+                {
+                    //Console.WriteLine("Before request for:\t" + Ellipsize(oS.fullUrl,60));
+
+
+                    // In order to enable response tampering, buffering mode MUST
+                    // be enabled; this allows FiddlerCore to permit modification of
+                    // the response in the BeforeResponse handler rather than streaming
+                    // the response to the client as the response comes in.
+                    oS.bBufferResponse = false;
+                    Monitor.Enter(oAllSessions);
+                    oAllSessions.Add(oS);
+                    Monitor.Exit(oAllSessions);
                 };
+
+                // All requests for subdomain.example.com should be directed to the development server at 123.125.44.242
+                if (oS.host.StartsWith("localhost"))
+                {
+                    oS.bypassGateway = true;                   // Prevent this request from going through an upstream proxy
+                    oS["x-overrideHost"] = "123.125.44.242";  // DNS name or IP address of target server
+                }
 
                 if ((oS.hostname == sSecureEndpointHostname) && (oS.port == 7777))
                 {
@@ -253,7 +116,7 @@ namespace Capture
                     oS.oResponse.headers.HTTPResponseStatus = "200 Ok";
                     oS.oResponse["Content-Type"] = "text/html; charset=UTF-8";
                     oS.oResponse["Cache-Control"] = "private, max-age=0";
-                    oS.utilSetResponseBody("<html><body>Request for httpS://"+sSecureEndpointHostname+ ":7777 received. Your request was:<br /><plaintext>" + oS.oRequest.headers.ToString());
+                    oS.utilSetResponseBody("<html><body>Request for httpS://" + sSecureEndpointHostname + ":7777 received. Your request was:<br /><plaintext>" + oS.oRequest.headers.ToString());
                 }
             };
 
@@ -285,8 +148,8 @@ namespace Capture
                     Console.Title = ("Session list contains: " + oAllSessions.Count.ToString() + " sessions");
                 }
 #if SAZ_SUPPORT                
-                if ( oAllSessions.Count> MaxLogLength){
-                	SaveSessionsToDesktop(oAllSessions);
+                if ( oAllSessions.Count> Config.MaxLogLength){
+                	MySession.SaveSessionsToDesktop(oAllSessions);
                 	Monitor.Enter(oAllSessions);
                     oAllSessions.Clear();
                     Monitor.Exit(oAllSessions);
@@ -320,7 +183,7 @@ namespace Capture
             }
 #endif
 
-            Console.WriteLine(String.Format("Starting {0} ({1})...", Fiddler.FiddlerApplication.GetVersionString(), sSAZInfo));
+            //Console.WriteLine(String.Format("Starting {0} ({1})...", Fiddler.FiddlerApplication.GetVersionString(), sSAZInfo));
 
             // For the purposes of this demo, we'll forbid connections to HTTPS 
             // sites that use invalid certificates
@@ -334,35 +197,37 @@ namespace Capture
 
             FiddlerApplication.Prefs.SetBoolPref("fiddler.network.streaming.abortifclientaborts", true);
 
-            Fiddler.FiddlerApplication.Startup(Port, FiddlerCoreStartupFlags.Default);
+            Fiddler.FiddlerApplication.Startup(Config.Port, FiddlerCoreStartupFlags.Default);
             FiddlerApplication.Log.LogString("Using Gateway: " + ((CONFIG.bForwardToGateway) ? "TRUE" : "FALSE"));
 
             Console.WriteLine("Hit CTRL+C to end session.");
-            
+
             oSecureEndpoint = null;
             oSecureEndpoint = FiddlerApplication.CreateProxyEndpoint(7777, true, sSecureEndpointHostname);
             if (null != oSecureEndpoint)
             {
                 FiddlerApplication.Log.LogString("Created secure end point listening on port 7777, using a HTTPS certificate for '" + sSecureEndpointHostname + "'");
             }
-            if (DomainFilter == ""){
-            	//WriteTest("Listening in the port "+Port+" for all domains");
-            	WriteTest("Listening in the port ");
-            	WriteWarning(""+Port);
-            	WriteTest(" for all domains");
+            if (Config.DomainFilter == "")
+            {
+                //WriteTest("Listening in the port "+Port+" for all domains");
+                WriteTest("Listening in the port ");
+                WriteWarning("" + Config.Port);
+                WriteTest(" for all domains");
             }
-            else{
-            	WriteTest("Listening in the port ");
-            	WriteWarning(""+Port);
-            	WriteTest(" for domain:");
-            	WriteWarning(DomainFilter);
+            else
+            {
+                WriteTest("Listening in the port ");
+                WriteWarning("" + Config.Port);
+                WriteTest(" for domain:");
+                WriteWarning(Config.DomainFilter);
             }
 
 
             bool bDone = false;
             do
             {
-                WriteHelp("\nEnter a command [C=Clear;D=domain; L=List; G=Collect Garbage;H=Help; W=write SAZ; R=read SAZ;\n\tS=Toggle Forgetful Streaming; T=Toggle Title Counter; Q=Quit]:");
+                WriteHelp("\nEnter a command [c=Clear;d=Domain config; l=List sesson; g=Collect Garbage;h=Hosts config; w=write SAZ;\n\ts=Toggle Forgetful Streaming; t=Toggle Title Counter; Q=Quit]:");
                 Console.Write(">");
                 ConsoleKeyInfo cki = Console.ReadKey();
                 Console.WriteLine();
@@ -375,27 +240,31 @@ namespace Capture
                         WriteCommandResponse("Clear...");
                         FiddlerApplication.Log.LogString("Cleared session list.");
                         break;
-                        
+
                     case 'd':
-                    	if (DomainFilter==""){
-                    		WriteTest("capture all domain\n");
-                    		}
-                    	else{
-                    		WriteTest("domain is :"+DomainFilter+"\n");
-                    		}
+                        if (Config.DomainFilter == "")
+                        {
+                            WriteTest("capture all domain\n");
+                        }
+                        else
+                        {
+                            WriteTest("domain is :" + Config.DomainFilter + "\n");
+                        }
                         Console.Write("input new domain:\n");
-                    	DomainFilter = Console.ReadLine();
-                    	if (DomainFilter==""){
-                    		WriteTest("capture all domain\n");
-                    		}
-                    	else{
-                    		WriteTest("domain is :"+DomainFilter+"\n");
-                    		}
-                    	Conf["configuration"]["domain"].InnerText = DomainFilter;
+                        Config.DomainFilter = Console.ReadLine();
+                        if (Config.DomainFilter == "")
+                        {
+                            WriteTest("capture all domain\n");
+                        }
+                        else
+                        {
+                            WriteTest("domain is :" + Config.DomainFilter + "\n");
+                        }
+                        Config.Conf["configuration"]["domain"].InnerText = Config.DomainFilter;
                         break;
 
                     case 'l':
-                        WriteSessionList(oAllSessions);
+                        MySession.WriteSessionList(oAllSessions);
                         break;
 
                     case 'g':
@@ -404,20 +273,24 @@ namespace Capture
                         GC.Collect();
                         Console.WriteLine("GC Done.\nWorking Set:\t" + Environment.WorkingSet.ToString("n0"));
                         break;
-                        
+
                     case 'h':
-                        WriteHelp("Author:Spark\nEmail:spark@secsay.com\nKey d to set a domain to capture;\nOr start like :App.exe renren.com");
+                        WriteHelp("set hosts");
+                        
+                        Application.EnableVisualStyles();
+                        //Application.SetCompatibleTextRenderingDefault(false);
+                        Application.Run(new Form1());
                         break;
 
                     case 'q':
                         bDone = true;
-                    	Conf.Save(strConfFileName);
+                        Config.Conf.Save(Config.strConfFileName);
                         DoQuit();
                         break;
 
                     case 'r':
 #if SAZ_SUPPORT
-                        ReadSessions(oAllSessions);
+                        MySession.ReadSessions(oAllSessions);
 #else
                         WriteCommandResponse("This demo was compiled without SAZ_SUPPORT defined");
 #endif
@@ -427,7 +300,7 @@ namespace Capture
 #if SAZ_SUPPORT
                         if (oAllSessions.Count > 0)
                         {
-                            SaveSessionsToDesktop(oAllSessions);
+                            MySession.SaveSessionsToDesktop(oAllSessions);
                         }
                         else
                         {
@@ -448,67 +321,12 @@ namespace Capture
                     case 's':
                         bool bForgetful = !FiddlerApplication.Prefs.GetBoolPref("fiddler.network.streaming.ForgetStreamedData", false);
                         FiddlerApplication.Prefs.SetBoolPref("fiddler.network.streaming.ForgetStreamedData", bForgetful);
-                        Console.WriteLine( bForgetful ? "FiddlerCore will immediately dump streaming response data." : "FiddlerCore will keep a copy of streamed response data.");
+                        Console.WriteLine(bForgetful ? "FiddlerCore will immediately dump streaming response data." : "FiddlerCore will keep a copy of streamed response data.");
                         break;
 
                 }
             } while (!bDone);
         }
-
-        /*
-        /// <summary>
-        /// This callback allows your code to evaluate the certificate for a site and optionally override default validation behavior for that certificate.
-        /// You should not implement this method unless you understand why it is a security risk.
-        /// </summary>
-        /// <param name="sExpectedCN">The CN expected for this session</param>
-        /// <param name="ServerCertificate">The certificate provided by the server</param>
-        /// <param name="ServerCertificateChain">The certificate chain of that certificate</param>
-        /// <param name="sslPolicyErrors">Errors from default validation</param>
-        /// <param name="bTreatCertificateAsValid">TRUE if you want to force the certificate to be valid; FALSE if you want to force the certificate to be invalid</param>
-        /// <returns>TRUE if you want to override default validation; FALSE if bTreatCertificateAsValid should be ignored</returns>
-        static bool FiddlerApplication_OverrideServerCertificateValidation(Session oS, string sExpectedCN, System.Security.Cryptography.X509Certificates.X509Certificate ServerCertificate, System.Security.Cryptography.X509Certificates.X509Chain ServerCertificateChain, System.Net.Security.SslPolicyErrors sslPolicyErrors, out bool bTreatCertificateAsValid)
-        {
-            if (null != ServerCertificate)
-            {
-                Console.WriteLine("Certificate for " + sExpectedCN + " was for site " + ServerCertificate.Subject + " and errors were " + sslPolicyErrors.ToString());
-
-                if (ServerCertificate.Subject.Contains("fiddler2.com"))
-                {
-                    Console.WriteLine("Got a certificate for fiddler2.com and we'll say this is also good for, say, fiddlertool.com");
-                    bTreatCertificateAsValid = true;
-                    return true;
-                }
-            }
-
-            bTreatCertificateAsValid = false;
-            return false;
-        }
-        */
-
-        /*
-        // This event handler is called on every socket read for the HTTP Response. You almost certainly don't want
-        // to sync on this event handler, but the code below shows how you can use it to mess up your HTTP traffic.
-        static void FiddlerApplication_OnReadResponseBuffer(object sender, RawReadEventArgs e)
-        {
-            // NOTE: arrDataBuffer is a fixed-size array. Only bytes 0 to iCountOfBytes should be read/manipulated.
-            //
-            // Just for kicks, lowercase every byte. Note that this will obviously break any binary content.
-            for (int i = 0; i < e.iCountOfBytes; i++)
-            {
-                if ((e.arrDataBuffer[i] > 0x40) && (e.arrDataBuffer[i] < 0x5b))
-                {
-                    e.arrDataBuffer[i] = (byte)(e.arrDataBuffer[i] + (byte)0x20);
-                }
-            }
-            Console.WriteLine(String.Format("Read {0} response bytes for session {1}", e.iCountOfBytes, e.sessionOwner.id));
-        }
-        */
-
-        /// <summary>
-        /// When the user hits CTRL+C, this event fires.  We use this to shut down and unregister our FiddlerCore.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
         {
             DoQuit();

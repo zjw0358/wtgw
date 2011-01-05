@@ -1,4 +1,4 @@
-﻿#if SAZ_SUPPORT
+#if SAZ_SUPPORT
 #if !USE_XCEED
 // THIS CODE SAMPLE & SOFTWARE IS LICENSED "AS-IS." YOU BEAR THE RISK OF USING IT. Eric Lawrence GIVES NO EXPRESS WARRANTIES, GUARANTEES OR CONDITIONS. 
 // Full license terms are contained in the file License.txt in the package. 
