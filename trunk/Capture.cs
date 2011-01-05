@@ -27,6 +27,7 @@ namespace Capture
         static bool bUpdateTitle = true;
         static Proxy oSecureEndpoint;
         static string sSecureEndpointHostname = "localhost";
+        
 
         public static void DoQuit()
         {
@@ -35,9 +36,9 @@ namespace Capture
             Fiddler.FiddlerApplication.Shutdown();
             Thread.Sleep(500);
         }
-        
-        
 
+
+        [STAThread]
         static void Main(string[] args)
         {
             WriteHelp("Current hosts in system is :");
@@ -227,7 +228,7 @@ namespace Capture
             bool bDone = false;
             do
             {
-                WriteHelp("\nEnter a command [c=Clear;d=Domain config; l=List sesson; g=Collect Garbage;h=Hosts config; w=write SAZ;\n\ts=Toggle Forgetful Streaming; t=Toggle Title Counter; Q=Quit]:");
+                WriteHelp("\nEnter a command [c=Clear;d=Domain config; l=List sesson; g=Collect Garbage;h=Hosts config; w=write SAZ;\nr=reload SAZ; s=Toggle Forgetful Streaming; t=Toggle Title Counter; Q=Quit]:");
                 Console.Write(">");
                 ConsoleKeyInfo cki = Console.ReadKey();
                 Console.WriteLine();
@@ -291,6 +292,7 @@ namespace Capture
                     case 'r':
 #if SAZ_SUPPORT
                         MySession.ReadSessions(oAllSessions);
+                        
 #else
                         WriteCommandResponse("This demo was compiled without SAZ_SUPPORT defined");
 #endif

@@ -3,21 +3,36 @@ using System.Collections.Generic;
 using System.Text;
 using Fiddler;
 using System.Threading;
+using System.Windows.Forms;
+using System.IO;
 
 namespace Capture
 {
     class MySession:Comman
     {
 #if SAZ_SUPPORT
+
+        static OpenFileDialog openFileDialog1;
         public static void ReadSessions(List<Fiddler.Session> oAllSessions)
         {
             TranscoderTuple oImporter = FiddlerApplication.oTranscoders.GetImporter("SAZ");
-
+            //
             if (null != oImporter)
             {
-
+                openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+                openFileDialog1.FileName = "";
+                openFileDialog1.Filter = "saz文件|*.saz";
+                openFileDialog1.RestoreDirectory = true;
+                openFileDialog1.FilterIndex = 1;
+                openFileDialog1.InitialDirectory = Environment.CurrentDirectory.ToString()+@"\log";
+                string fName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\ToLoad.saz";
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    fName = openFileDialog1.FileName;
+                    //MessageBox.Show(fName);
+                }　
                 Dictionary<string, object> dictOptions = new Dictionary<string, object>();
-                dictOptions.Add("Filename", Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\ToLoad.saz");
+                dictOptions.Add("Filename", fName);
 
                 Session[] oLoaded = FiddlerApplication.DoImport("SAZ", false, dictOptions, null);
 
@@ -34,6 +49,11 @@ namespace Capture
             bool bSuccess = false;
             //string sFilename = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
             //+ @"\" + DateTime.Now.ToString("hh-mm-ss") + ".saz";
+            DirectoryInfo MyDir = new DirectoryInfo(Environment.CurrentDirectory+@"\log");
+            if (!MyDir.Exists)
+            {
+                MyDir.Create();
+            }
             string sFilename = @"log\" + DateTime.Now.ToString("hh-mm-ss") + ".saz";
             try
             {
