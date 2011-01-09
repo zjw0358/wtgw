@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Reflection;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 
 namespace Capture
@@ -225,11 +226,12 @@ namespace Capture
             }
 
 
-            bool bDone = false;
+            bool mDone = false;
+            
             do
             {
-                WriteHelp("\nEnter a command [c=Clear;d=Domain config; l=List sesson; g=Collect Garbage;h=Hosts config; w=write SAZ;\nr=reload SAZ; s=Toggle Forgetful Streaming; t=Toggle Title Counter; Q=Quit]:");
-                Console.Write(">");
+                WriteHelp("\nCommand:\n[P=Penetration testing;C=Clear cache;D=Domain config; L=List session; G=Collect Garbage;\nH=Hosts config; w=Write SAZ;R=reload SAZ; S=Toggle Forgetful Streaming; t=Toggle Title Counter; Q=Quit]:");
+                Console.Write("main>");
                 ConsoleKeyInfo cki = Console.ReadKey();
                 Console.WriteLine();
                 switch (cki.KeyChar)
@@ -284,7 +286,7 @@ namespace Capture
                         break;
 
                     case 'q':
-                        bDone = true;
+                        mDone = true;
                         Config.Conf.Save(Config.strConfFileName);
                         DoQuit();
                         break;
@@ -303,6 +305,9 @@ namespace Capture
                         if (oAllSessions.Count > 0)
                         {
                             MySession.SaveSessionsToDesktop(oAllSessions);
+                            Monitor.Enter(oAllSessions);
+                            oAllSessions.Clear();
+                            Monitor.Exit(oAllSessions);
                         }
                         else
                         {
@@ -319,6 +324,7 @@ namespace Capture
                             "Title bar update suppressed...";
                         break;
 
+                    
                     // Forgetful streaming
                     case 's':
                         bool bForgetful = !FiddlerApplication.Prefs.GetBoolPref("fiddler.network.streaming.ForgetStreamedData", false);
@@ -326,8 +332,52 @@ namespace Capture
                         Console.WriteLine(bForgetful ? "FiddlerCore will immediately dump streaming response data." : "FiddlerCore will keep a copy of streamed response data.");
                         break;
 
-                }
-            } while (!bDone);
+                    case 'p':
+                        bool pDone = false;
+                        do
+                        {
+                            WriteHelp("\nCommand [M|Q=Back to Main;R=Record a login;S=Scan;");
+                            Console.Write("Penetest>");
+                            ConsoleKeyInfo pki = Console.ReadKey();
+                            Console.WriteLine();
+                            switch(pki.KeyChar)
+                            {
+                                case 'm':
+                                    //back to main
+                                    pDone = true;
+                                    break;
+                                case 'q':
+                                    //back to main
+                                    pDone = true;
+                                    break;
+                                case 'r':
+                                    string url = Interaction.InputBox("请输入登录入口", "录制登录过程", "http://www.renren.com", 100, 100);
+                                    //string html = LoginRecord.browser("http://wap.renren.com");
+                                    //WriteWarning("html:"+html);
+                                    //LoginRecord.msgbox("hello");
+                                    LoginRecord.Browser(url);
+                                    break;
+                                case 'e':
+                                    frmTextWizard wizard = new frmTextWizard();
+                                    //wizard.Show();
+                                    Application.Run(wizard);
+                                    break;
+                                case 'x':
+                                    
+                                    //UAUserInterface form1 = new UAUserInterface(xa);
+                                    //Application.Run(form1);
+                                    break;
+
+
+                            }
+                        } while (!pDone);
+                        break;
+
+
+
+
+                }//end switch
+            } while (!mDone);
         }
         static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
         {
