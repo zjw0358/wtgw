@@ -27,7 +27,7 @@
     <MapFileExtensions>false</MapFileExtensions>
     <ProductName>WTGW</ProductName>
     <PublisherName>spark</PublisherName>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -42,6 +42,7 @@
     <DefineConstants>TRACE;DEBUG;SAZ_SUPPORT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -51,6 +52,7 @@
     <DefineConstants>TRACE;SAZ_SUPPORT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Capture.Program</StartupObject>
@@ -78,6 +80,13 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CasabaSecurity.Web.UTF8Coder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\CasabaSecurity.Web.UTF8Coder.dll</HintPath>
+    </Reference>
+    <Reference Include="Equin.ApplicationFramework.BindingListView">
+      <HintPath>lib\Equin.ApplicationFramework.BindingListView.dll</HintPath>
+    </Reference>
     <Reference Include="FiddlerCore">
       <HintPath>lib\FiddlerCore.dll</HintPath>
     </Reference>
@@ -95,7 +104,8 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Xceed.Compression">
+    <Reference Include="Xceed.Compression, Version=4.2.10558.15020, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Xceed.Compression.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Compression.Formats">
@@ -116,6 +126,61 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="encode\Utilities.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\DataStructures\Headers.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\DataStructures\PropertyComparer.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\DataStructures\SortableBindingList.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Engines\RequestParsingEngine.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Engines\RequestResultProcessingEngine.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Engines\ResponseEngine.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Engines\UnicodeAssisstantEngine.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Interfaces\IBodyParser.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Interfaces\IHeaderParser.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Interfaces\IQueryStringParser.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Interfaces\IRequestParser.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Interfaces\IResponseParser.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\MatchObjects\BodyMatch.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\MatchObjects\HeaderMatch.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\MatchObjects\MatchBase.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\MatchObjects\MatchCollection.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\MatchObjects\QueryStringMatch.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\MatchObjects\ResponseHeaderMatch.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\MatchObjects\Token.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Parsers\AutoRequestParser.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Parsers\BodyParserBase.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Parsers\FormUrlEncodedBodyParser.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Parsers\JSONRequestBodyParser.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Parsers\NameValueQueryStringParser.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Parsers\ResponseParser.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Request.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\RequestManager.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Response.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\ResponseResult.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Session.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\test.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Transformation.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\UALoader.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\UASettings.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\UAUnicodeChar.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\UAUserInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="extension\autoXSSAnalyzer\UAUserInterface.designer.cs">
+      <DependentUpon>UAUserInterface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="extension\autoXSSAnalyzer\UnicodeTestCase.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\UnicodeTestCases.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\UnicodeTestCaseTypes.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\UpdateManager.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Utils\FiddlerUtils.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Utils\UAUtilities.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\Utils\WatcherUtility.cs" />
+    <Compile Include="extension\autoXSSAnalyzer\XmlMappingLoader.cs" />
+    <Compile Include="extension\IAutoTamper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="extension\IFiddlerExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="hosts\ConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,12 +223,32 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="extension\autoXSSAnalyzer\ico.ico" />
+    <Content Include="extension\autoXSSAnalyzer\MappingsDeclaration.xml" />
+    <Content Include="extension\autoXSSAnalyzer\ShortMappingList.xml" />
     <Content Include="ico.ico" />
+    <Content Include="lib\CasabaSecurity.Web.UTF8Coder.dll" />
+    <Content Include="lib\CasabaSecurity.Web.UTF8Coder.pdb" />
+    <Content Include="lib\Equin.ApplicationFramework.BindingListView.dll" />
+    <Content Include="lib\Equin.ApplicationFramework.BindingListView.pdb" />
+    <Content Include="lib\FiddlerCore.dll" />
+    <Content Include="lib\Ionic.Zip.Reduced.dll" />
+    <Content Include="lib\LICENSE.TXT" />
+    <Content Include="lib\LICENSE_EQUIN.TXT" />
+    <Content Include="lib\LoginRecord.dll" />
+    <Content Include="lib\Xceed.Compression.dll" />
+    <Content Include="lib\Xceed.Compression.Formats.dll" />
+    <Content Include="lib\Xceed.FileSystem.dll" />
+    <Content Include="lib\Xceed.Zip.dll" />
     <Content Include="makecert.exe" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="encode\frmTextWizard.resx">
       <DependentUpon>frmTextWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="extension\autoXSSAnalyzer\UAUserInterface.resx">
+      <DependentUpon>UAUserInterface.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="hosts\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
