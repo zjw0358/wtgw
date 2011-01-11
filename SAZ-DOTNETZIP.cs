@@ -22,7 +22,7 @@ using System.Text;
 using System.Diagnostics;
 using Fiddler;
 
-[assembly: RequiredVersionAttribute("2.2.9.9")]
+//[assembly: RequiredVersionAttribute("2.2.9.9")]
 namespace Fiddler
 {
     // This class MUST be public in order to allow it to be found by reflection

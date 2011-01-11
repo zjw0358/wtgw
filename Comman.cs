@@ -33,14 +33,14 @@ namespace Capture
         {
             ConsoleColor oldColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write(s);
+            Console.WriteLine(s);
             Console.ForegroundColor = oldColor;
         }
         public static void WriteTest(string s)
         {
             ConsoleColor oldColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(s);
+            Console.WriteLine(s);
             Console.ForegroundColor = oldColor;
         }
         public static string Ellipsize(string s, int iLen)

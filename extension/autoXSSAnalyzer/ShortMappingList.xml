@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UnicodeTestMappings>
+
+  <UnicodeTestMapping Type="Transformable">
+    <Target>
+      <UnicodeChar Name="U+003C LESS-THAN SIGN" CodePoint="003C" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+FF1C FULLWIDTH LESS-THAN SIGN" CodePoint="FF1C" />
+    </Source>
+    <Transformations Normalization="True" BestFit="True" ToUpper="False" ToLower="False"/>
+    <Description>'Transformable Test Case'
+    
+The source character U+FF1C FULLWIDTH LESS-THAN SIGN character will transform to the U+003C LESS-THAN SIGN in certain cases.  For example, some Unicode normalization forms as well as some best-fit mappings will cause this one-way  transformation.
+
+Because it's mostly benign, this character can be useful as a quick test to find out if an application is transforming strings in these ways.  If a transformation is detected, then further testing should be performed to find cross-site scripting (XSS) attacks.
+
+For example, by attempting to get the word 'script' into the HTML using the U+FF1C FULLWIDTH LESS-THAN SIGN in place of the ASCII '&lt;'.
+    </Description>
+  </UnicodeTestMapping>
+  
+    <UnicodeTestMapping Type="Transformable">
+    <Target>
+      <UnicodeChar Name="U+003E GREATER-THAN SIGN" CodePoint="003E" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+FE65 SMALL GREATER-THAN SIGN" CodePoint="FE65" />
+    </Source>
+    <Transformations Normalization="True" BestFit="True" ToUpper="False" ToLower="False"/>
+    <Description>'Transformable Test Case'
+    
+The source character U+FE65 SMALL GREATER-THAN SIGN character will transform to the U+003E GREATER-THAN SIGN in certain cases.  For example, some Unicode normalization forms as well as some best-fit mappings will cause this one-way  transformation.
+
+Because it's mostly benign, this character can be useful as a quick test to find out if an application is transforming strings in these ways.  If a transformation is detected, then further testing should be performed to find cross-site scripting (XSS) attacks.
+
+For example, by attempting to get the word 'script' into the HTML using the U+FE65 SMALL GREATER-THAN SIGN in place of the ASCII '&gt;'.
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping Type="Transformable">
+    <Target>
+      <UnicodeChar Name="U+0049 LATIN CAPITAL LETTER I" CodePoint="0049" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE " CodePoint="0130" />
+    </Source>
+    <Transformations Normalization="True" BestFit="True" ToUpper="False" ToLower="True"/>
+    <Description>'Transformable Test Case'
+    
+The "Turkish I" source character U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE character will transform to the U+0049 LATIN CAPITAL LETTER I in certain cases.  For example, lower-casing in culture-aware software as well some best-fit mappings.
+
+Because it's mostly benign, this character can be useful as a quick test to find out if an application is transforming strings in these ways.  If a transformation is detected, then further testing should be performed to find cross-site scripting (XSS) attacks.
+
+For example, by attempting to get the word 'script' into the HTML using the U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE in place of the ASCII 'i'.
+    </Description>
+  </UnicodeTestMapping>
+  
+  <UnicodeTestMapping Type="Transformable">
+    <Target>
+      <UnicodeChar Name="U+0069 LATIN SMALL LETTER I" CodePoint="0069" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+0131 LATIN SMALL LETTER DOTLESS I" CodePoint="0131" />
+    </Source>
+    <Transformations Normalization="True" BestFit="True" ToUpper="True" ToLower="False"/>
+    <Description>'Transformable Test Case'
+    
+The "Turkish i" source character U+0131 LATIN SMALL LETTER DOTLESS I character will transform to the U+0069 LATIN SMALL LETTER I in certain cases.  For example, upper-casing in culture-aware software as well some best-fit mappings.
+
+Because it's mostly benign, this character can be useful as a quick test to find out if an application is transforming strings in these ways.  If a transformation is detected, then further testing should be performed to find cross-site scripting (XSS) attacks.
+
+For example, by attempting to get the word 'scrIpt' into the HTML using the U+0131 LATIN SMALL LETTER DOTLESS I in place of the ASCII 'I'.
+    </Description>
+  </UnicodeTestMapping>
+  
+  <UnicodeTestMapping Type="Transformable">
+    <Target>
+      <UnicodeChar Name="U+003C LESS-THAN SIGN" CodePoint="003C" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+00AB LEFT-POINTING DOUBLE ANGLE QUOTATION MARK" CodePoint="00AB" />
+    </Source>
+    <Transformations Normalization="False" BestFit="True" ToUpper="False" ToLower="False"/>
+    <Description>'Transformable Test Case'
+    
+The source character U+00AB LEFT-POINTING DOUBLE ANGLE QUOTATION MARK character will transform to the U+003C LESS-THAN SIGN in certain cases where best-fit mappings occur.
+
+Because it's mostly benign, this character can be useful as a quick test to find out if an application is transforming strings in these ways.  If a transformation is detected, then further testing should be performed to find cross-site scripting (XSS) attacks.
+
+For example, by attempting to get a &lt; character into the HTML using the U+00AB LEFT-POINTING DOUBLE ANGLE QUOTATION MARK in place of the ASCII '&lt;'.
+    </Description>
+  </UnicodeTestMapping>
+  
+  <UnicodeTestMapping Type="Transformable">
+    <Target>
+      <UnicodeChar Name="U+006F LATIN SMALL LETTER O" CodePoint="006F" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+2134 SCRIPT SMALL O" CodePoint="2134" />
+    </Source>
+    <Transformations Normalization="True" BestFit="True" ToUpper="False" ToLower="False"/>
+    <Description>'Transformable Test Case'
+    
+The source character U+2134 SCRIPT SMALL O character will transform to the U+006F LATIN SMALL LETTER O in certain cases.  For example, normalization forms KC and KD will transform it as will some  best-fit mappings.
+
+Because it's mostly benign, this character can be useful as a quick test to find out if an application is transforming strings in these ways.  If a transformation is detected, then further testing should be performed to find cross-site scripting (XSS) attacks.
+
+For example, by attempting to get an 'onmouseover' event in the HTML using the U+2134 SCRIPT SMALL O in place of the ASCII 'o'.
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping Type="Transformable">
+    <Target>
+      <UnicodeChar Name="U+0069 LATIN SMALL LETTER I" CodePoint="0069" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+0129 LATIN SMALL LETTER I WITH TILDE" CodePoint="0129" />
+    </Source>
+    <Transformations Normalization="False" BestFit="True" ToUpper="False" ToLower="False"/>
+    <Description>'Transformable Test Case'
+
+The source character U+0129 LATIN SMALL LETTER I WITH TILDE character will transform to the U+0069 LATIN SMALL LETTER I in certain cases.  For example, normalization forms KC and KD will transform it as will some  best-fit mappings.
+    
+Because it's mostly benign, this character can be useful as a quick test to find out if an application is transforming strings in these ways.  If a transformation is detected, then further testing should be performed to find cross-site scripting (XSS) attacks.
+
+For example, by attempting to get &lt;script&gt; tag in the HTML using the U+0129 LATIN SMALL LETTER I WITH TILDE in place of the ASCII 'i'.
+    </Description>
+  </UnicodeTestMapping>
+  
+  <UnicodeTestMapping Type="Transformable">
+    <Target>
+      <UnicodeChar Name="U+0022 QUOTATION MARK &quot;" CodePoint="0022" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+02BA MODIFIER LETTER DOUBLE PRIME" CodePoint="02BA" />
+    </Source>
+    <Transformations Normalization="False" BestFit="True" ToUpper="False" ToLower="False"/>
+    <Description>'Transformable Test Case'
+
+The source character U+02BA MODIFIER LETTER DOUBLE PRIME character will transform to the U+0022 QUOTATION MARK &quot; in certain cases of best-fit mappings.
+    
+If a transformation is detected, then further testing should be performed to find cross-site scripting (XSS) attacks.  
+
+For example, if you can control an HTML attribute value between two &quot; characters, then you can break out of the attribute and edit the HTML element with new ones.  If your input causes:
+
+&lt;a href="myinput""&gt; then you can control the HTML to become &lt;a href="myinput" onclick="alert(xss)"&gt;
+    </Description>
+  </UnicodeTestMapping>
+  
+    <UnicodeTestMapping Type="Transformable">
+    <Target>
+      <UnicodeChar Name="U+0027 APOSTROPHE" CodePoint="0027" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+02B9 MODIFIER LETTER PRIME" CodePoint="02B9" />
+    </Source>
+    <Transformations Normalization="False" BestFit="True" ToUpper="False" ToLower="False"/>
+    <Description>'Transformable Test Case'
+
+The source character U+02B9 MODIFIER LETTER PRIME character will transform to the U+0022 QUOTATION MARK &quot; in certain cases of best-fit mappings.
+    
+If a transformation is detected, then further testing should be performed to find cross-site scripting (XSS) attacks.  
+
+For example, if you can control an HTML attribute value between two &quot; characters, then you can break out of the attribute and edit the HTML element with new ones.  If your input causes:
+
+&lt;a href='myinput''&gt; then you can control the HTML to become &lt;a href='myinput' onclick='alert(xss)'&gt;
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping Type="Traditional">
+    <Target>
+      <UnicodeChar Name="U+003E GREATER-THAN SIGN &gt;" CodePoint="003e" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+003E GREATER-THAN SIGN &gt;" CodePoint="003e" />
+    </Source>
+    <Description>'Traditional Test Case'
+    
+This traditional test case for XSS will inject an ASCII character &gt;.  If this character is not securely encoded on output, then you may be able to control the HTML and inject script.  
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping Type="Traditional">
+    <Target>
+      <UnicodeChar Name="U+003C LESS-THAN SIGN &lt;" CodePoint="003c" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+003C LESS-THAN SIGN &lt;" CodePoint="003c" />
+    </Source>
+    <Description>'Traditional Test Case'
+    
+This traditional test case for XSS will inject an ASCII character &lt;.   If this character is not securely encoded on output, then you may be able to control the HTML and inject script.  
+    </Description>
+  </UnicodeTestMapping>
+  
+  <UnicodeTestMapping Type="Traditional">
+    <Target>
+      <UnicodeChar Name="U+0022 QUOTATION MARK &quot;" CodePoint="0022" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+0022 QUOTATION MARK &quot;" CodePoint="0022" />
+    </Source>
+    <Description>'Traditional Test Case'
+    
+This traditional test case for XSS will inject an ASCII character &quot;.  If this character is not securely encoded on output, then you may be able to control the HTML and inject script.  
+    </Description>
+  </UnicodeTestMapping>
+  
+  <UnicodeTestMapping Type="Traditional">
+    <Target>
+      <UnicodeChar Name="U+0027 APOSTROPHE &quot;" CodePoint="0027" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+0027 APOSTROPHE &quot;" CodePoint="0027" />
+    </Source>
+    <Description>'Traditional Test Case'
+    
+This traditional test case for XSS will inject an ASCII character &#39;.  If this character is not securely encoded on output, then you may be able to control the HTML and inject script.  
+    </Description>
+  </UnicodeTestMapping>
+  
+  <UnicodeTestMapping Type="Overlong">
+    <Target>
+      <UnicodeChar Name="U+003E GREATER-THAN SIGN &gt;" CodePoint="003e" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+003E GREATER-THAN SIGN &gt;" CodePoint="003e" />
+    </Source>
+    <Description>'Overlong UTF-8 Test Case'
+    
+This overlong UTF-8  test case for XSS will inject the 2-byte non-shortest form of the ASCII character &gt;.  If this character is converted to it's shortest form and not securely encoded on output, then you may be able to control the HTML and inject script.  
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping Type="Overlong">
+    <Target>
+      <UnicodeChar Name="U+003C GREATER-THAN SIGN &lt;" CodePoint="003c" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+003C GREATER-THAN SIGN &lt;" CodePoint="003c" />
+    </Source>
+    <Description>'Overlong UTF-8 Test Case'
+    
+This overlong UTF-8  test case for XSS will inject the 2-byte non-shortest form of the ASCII character &lt;.   If this character is converted to it's shortest form and not securely encoded on output, then you may be able to control the HTML and inject script.  
+    </Description>
+  </UnicodeTestMapping>
+</UnicodeTestMappings>

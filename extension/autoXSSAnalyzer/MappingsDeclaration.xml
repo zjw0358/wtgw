@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UnicodeTestMappings>
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii Latin O" CodePoint="006F" />
+    </Target>
+		<Source>
+      <UnicodeChar Name="Script Small O" CodePoint="2134" />
+		</Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+      
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii Latin O" CodePoint="006F" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Latin Small Letter O With Macron" CodePoint="014D" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii Latin s" CodePoint="0073" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Latin Small Letter Long S" CodePoint="017F" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="True" ToLower="True"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii Latin I" CodePoint="0049" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Latin Small Letter Dotless I" CodePoint="0131" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="True" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii Latin i" CodePoint="0069" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Latin Small Letter i with Tilde" CodePoint="0129" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii Latin K" CodePoint="004B" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Kelvin Sign" CodePoint="212A" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="True" ToLower="True"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii Latin k" CodePoint="006B" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Latin Small Letter k With Cedilla" CodePoint="0137" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii Latin A" CodePoint="0041" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Full Width Latin Capital Letter A" CodePoint="FF21" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii Latin a" CodePoint="0061" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Greek Small Letter Alpha" CodePoint="03B1" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &quot;" CodePoint="0022" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Modifier Letter Double Prime" CodePoint="02BA" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &quot;" CodePoint="0022" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Combining Double Vertical Line Above" CodePoint="030E" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &quot;" CodePoint="0022" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Full Width Quotation Mark" CodePoint="FF02" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii '" CodePoint="0027" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Modifier Letter Prime" CodePoint="02B9" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii '" CodePoint="0027" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Combining Vertical Line Above" CodePoint="030D" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii '" CodePoint="0027" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Full Width Apostrophe" CodePoint="FF07" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &lt;" CodePoint="003C" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Full Width Less-Than Sign" CodePoint="FF1C" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &lt;" CodePoint="003C" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Small Less-Than Sign" CodePoint="FF64" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &lt;" CodePoint="003C" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Left-Pointing Angle Bracket" CodePoint="2329" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &lt;" CodePoint="003C" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Left Angle Bracket" CodePoint="3008" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &lt;" CodePoint="003C" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Left-Pointing Double Angle Quotation Mark" CodePoint="00AB" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &gt;" CodePoint="003E" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Right-Pointing Double Angle Quotation Mark" CodePoint="00BB" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &gt;" CodePoint="003E" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Right Angle Bracket" CodePoint="3009" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &gt;" CodePoint="003E" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Right-Pointing Angle Bracket" CodePoint="232A" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &gt;" CodePoint="003E" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Small Greater-Than Sign" CodePoint="FE65" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii &gt;" CodePoint="003E" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Full Width Greater-Than Sign" CodePoint="FF1E" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii :" CodePoint="003A" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Ratio" CodePoint="00BB" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii :" CodePoint="003A" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Armenian Full Stop" CodePoint="0589" />
+    </Source>
+    <Transformations Normalization="False" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii :" CodePoint="003A" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Presentation Form for Vertical Colon" CodePoint="FE13" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii :" CodePoint="003A" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Small Colon" CodePoint="FE55" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+  <UnicodeTestMapping>
+    <Target>
+      <UnicodeChar Name="Ascii :" CodePoint="003A" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="Full Width Colon" CodePoint="FF1A" />
+    </Source>
+    <Transformations Normalization="True" Best-Fit="True" ToUpper="False" ToLower="False"/>
+    <Description>
+
+    </Description>
+  </UnicodeTestMapping>
+
+</UnicodeTestMappings>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

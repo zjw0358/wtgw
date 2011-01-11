@@ -28,13 +28,16 @@ namespace Capture
         static bool bUpdateTitle = true;
         static Proxy oSecureEndpoint;
         static string sSecureEndpointHostname = "localhost";
+        static UALoader ualoader = null;
         
 
         public static void DoQuit()
         {
             WriteCommandResponse("Shutting down...");
+            if (null != ualoader) ualoader.OnBeforeUnload();
             if (null != oSecureEndpoint) oSecureEndpoint.Dispose();
             Fiddler.FiddlerApplication.Shutdown();
+            
             Thread.Sleep(500);
         }
 
@@ -79,6 +82,7 @@ namespace Capture
 
             // Simply echo notifications to the console.  Because Fiddler.CONFIG.QuietMode=true 
             // by default, we must handle notifying the user ourselves.
+            /*
             Fiddler.FiddlerApplication.OnNotification += delegate(object sender, NotificationEventArgs oNEA)
             {
                 WriteLog("** NotifyUser: " + oNEA.NotifyString);
@@ -86,8 +90,8 @@ namespace Capture
             Fiddler.FiddlerApplication.Log.OnLogString += delegate(object sender, LogEventArgs oLEA)
             {
                 WriteLog("** LogString: " + oLEA.LogString);
-            };
-
+            };*/
+           
             Fiddler.FiddlerApplication.BeforeRequest += delegate(Fiddler.Session oS)
             {
                 if (oS.host.EndsWith(Config.DomainFilter))
@@ -99,7 +103,7 @@ namespace Capture
                     // be enabled; this allows FiddlerCore to permit modification of
                     // the response in the BeforeResponse handler rather than streaming
                     // the response to the client as the response comes in.
-                    oS.bBufferResponse = false;
+                    //oS.bBufferResponse = true;
                     Monitor.Enter(oAllSessions);
                     oAllSessions.Add(oS);
                     Monitor.Exit(oAllSessions);
@@ -130,7 +134,7 @@ namespace Capture
                 Fiddler.FiddlerApplication.OnReadResponseBuffer += new EventHandler<RawReadEventArgs>(FiddlerApplication_OnReadResponseBuffer);
             */
 
-            /*
+            
             Fiddler.FiddlerApplication.BeforeResponse += delegate(Fiddler.Session oS) {
                 // Console.WriteLine("{0}:HTTP {1} for {2}", oS.id, oS.responseCode, oS.fullUrl);
                 
@@ -140,7 +144,8 @@ namespace Capture
                 // set bBufferResponse = true inside the beforeREQUEST method above.
                 //
                 //oS.utilDecodeResponse(); oS.utilReplaceInResponse("Microsoft", "Bayden");
-            };*/
+                
+            };
 
             Fiddler.FiddlerApplication.AfterSessionComplete += delegate(Fiddler.Session oS)
             {
@@ -214,7 +219,7 @@ namespace Capture
             {
                 //WriteTest("Listening in the port "+Port+" for all domains");
                 WriteTest("Listening in the port ");
-                WriteWarning("" + Config.Port);
+                WriteWarning("\b" + Config.Port);
                 WriteTest(" for all domains");
             }
             else
@@ -222,7 +227,7 @@ namespace Capture
                 WriteTest("Listening in the port ");
                 WriteWarning("" + Config.Port);
                 WriteTest(" for domain:");
-                WriteWarning(Config.DomainFilter);
+                WriteWarning(""+Config.DomainFilter);
             }
 
 
@@ -288,7 +293,7 @@ namespace Capture
                     case 'q':
                         mDone = true;
                         Config.Conf.Save(Config.strConfFileName);
-                        DoQuit();
+                        
                         break;
 
                     case 'r':
@@ -336,7 +341,7 @@ namespace Capture
                         bool pDone = false;
                         do
                         {
-                            WriteHelp("\nCommand [M|Q=Back to Main;R=Record a login;S=Scan;");
+                            WriteHelp("\nCommand [M|Q=Back to Main;X=XSS detect;#todo:R=Record a login;S=Scan;");
                             Console.Write("Penetest>");
                             ConsoleKeyInfo pki = Console.ReadKey();
                             Console.WriteLine();
@@ -363,9 +368,11 @@ namespace Capture
                                     Application.Run(wizard);
                                     break;
                                 case 'x':
-                                    
-                                    //UAUserInterface form1 = new UAUserInterface(xa);
-                                    //Application.Run(form1);
+
+                                    ualoader = new UALoader();
+                                    Console.WriteLine("starting xss detect.....");
+                                    ualoader.OnLoad();
+                                    //ualoader.OnBeforeUnload();
                                     break;
 
 
@@ -378,6 +385,8 @@ namespace Capture
 
                 }//end switch
             } while (!mDone);
+
+            DoQuit();
         }
         static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
         {
