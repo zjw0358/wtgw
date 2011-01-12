@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Capture</RootNamespace>
     <AssemblyName>Capture</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -84,7 +84,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\CasabaSecurity.Web.UTF8Coder.dll</HintPath>
     </Reference>
-    <Reference Include="Equin.ApplicationFramework.BindingListView">
+    <Reference Include="Equin.ApplicationFramework.BindingListView, Version=1.1.2416.25731, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Equin.ApplicationFramework.BindingListView.dll</HintPath>
     </Reference>
     <Reference Include="FiddlerCore">

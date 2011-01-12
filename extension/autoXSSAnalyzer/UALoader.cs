@@ -101,7 +101,16 @@ public class UALoader : IAutoTamper, IFiddlerExtension {
                 List<Casaba.ResponseResult> results = this.engine.InspectResponse(Casaba.FiddlerUtils.FiddlerSessionToSession(oSession));
                 if (results.Count > 0)
                 {
-                    Capture.Comman.WriteWarning("xss url£º" + oSession.fullUrl);
+                    foreach(Casaba.ResponseResult rr in results)
+                    {
+                        if (rr.Transformation == Casaba.Transformation.None)
+                        {
+                            Capture.Comman.WriteWarning("xss  url£º" + oSession.fullUrl);
+                        }
+                        //Capture.Comman.WriteWarning("type:" + rr.Transformation.ToString() + " xss  url£º" + oSession.fullUrl);
+                    }
+                    
+                    
                     //ui.Invoke(ui.ar, results);
                 }
             }

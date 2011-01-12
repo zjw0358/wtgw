@@ -355,13 +355,13 @@ namespace Capture
                                     //back to main
                                     pDone = true;
                                     break;
-                                case 'r':
-                                    string url = Interaction.InputBox("请输入登录入口", "录制登录过程", "http://www.renren.com", 100, 100);
-                                    //string html = LoginRecord.browser("http://wap.renren.com");
-                                    //WriteWarning("html:"+html);
-                                    //LoginRecord.msgbox("hello");
-                                    LoginRecord.Browser(url);
-                                    break;
+                                //case 'r':
+                                //    string url = Interaction.InputBox("请输入登录入口", "录制登录过程", "http://www.renren.com", 100, 100);
+                                //    //string html = LoginRecord.browser("http://wap.renren.com");
+                                //    //WriteWarning("html:"+html);
+                                //    //LoginRecord.msgbox("hello");
+                                //    LoginRecord.Browser(url);
+                                //    break;
                                 case 'e':
                                     frmTextWizard wizard = new frmTextWizard();
                                     //wizard.Show();
