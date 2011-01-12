@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UASettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Enabled>true</Enabled>
+  <CheckRequestForCanary>true</CheckRequestForCanary>
+  <InjectIntoQueryString>true</InjectIntoQueryString>
+  <InjectIntoPost>true</InjectIntoPost>
+  <InjectIntoHeaders>false</InjectIntoHeaders>
+  <IntelLookAhead>20</IntelLookAhead>
+  <CheckForUpdates>false</CheckForUpdates>
+  <CheckRequests>false</CheckRequests>
+  <Canary>sparkxss</Canary>
+  <FilterRequests>false</FilterRequests>
+  <FilterResponses>false</FilterResponses>
+  <DomainFilterEnabled>false</DomainFilterEnabled>
+  <UrlEncodeBodyMatches>false</UrlEncodeBodyMatches>
+  <UrlEncodeQueryStringMatches>false</UrlEncodeQueryStringMatches>
+  <UrlEncodeHeaderMatches>false</UrlEncodeHeaderMatches>
+  <AdvancedFilter>false</AdvancedFilter>
+  <ThrottleRequests>true</ThrottleRequests>
+  <ThrottleDelayPeriod>1000</ThrottleDelayPeriod>
+  <ThrottleBatchSize>25</ThrottleBatchSize>
+</UASettings>
