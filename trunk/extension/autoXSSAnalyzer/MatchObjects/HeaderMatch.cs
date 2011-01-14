@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Casaba {
+namespace Secsay {
     /// <summary>
     /// Class that represents a token found in a header. 
     /// </summary>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Casaba {
+namespace Secsay {
     public class Response {
 
         private string httpMethod;

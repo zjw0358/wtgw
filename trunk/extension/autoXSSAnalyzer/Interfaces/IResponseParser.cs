@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Casaba {
+namespace Secsay {
     interface IResponseParser {
        
         MatchCollection InspectResponse(Session s, Token t);

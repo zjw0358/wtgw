@@ -4,7 +4,7 @@ using System.Text;
 using System.Xml;
 using System.Collections.Generic;
 
-namespace Capture
+namespace XNMD
 {
     class Config:Comman
     {

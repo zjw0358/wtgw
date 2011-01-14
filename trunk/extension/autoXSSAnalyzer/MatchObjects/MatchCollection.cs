@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Casaba {
+namespace Secsay {
     public class MatchCollection : List<MatchBase> {
         public List<BodyMatch> GetMatchesInBody() {
             List<BodyMatch> ret = new List<BodyMatch>();

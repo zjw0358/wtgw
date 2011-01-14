@@ -6,7 +6,7 @@ using System.IO;
 using System.Diagnostics;
 
 
-namespace Casaba
+namespace Secsay
 {
     public class XmlMappingLoader
     {

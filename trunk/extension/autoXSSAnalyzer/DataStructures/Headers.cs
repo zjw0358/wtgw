@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Casaba {
+namespace Secsay {
     public class Headers : Dictionary<string, List<string>>{
         public Headers()
             : base() {

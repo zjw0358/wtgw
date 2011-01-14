@@ -6,7 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 
-namespace Capture
+namespace XNMD
 {
     class MySession:Comman
     {
@@ -44,17 +44,17 @@ namespace Capture
             }
         }
 
-        public static void SaveSessionsToDesktop(List<Fiddler.Session> oAllSessions)
+        public static void SaveSessionsTo(List<Fiddler.Session> oAllSessions,string path)
         {
             bool bSuccess = false;
             //string sFilename = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
             //+ @"\" + DateTime.Now.ToString("hh-mm-ss") + ".saz";
-            DirectoryInfo MyDir = new DirectoryInfo(Environment.CurrentDirectory+@"\log");
+            DirectoryInfo MyDir = new DirectoryInfo(Environment.CurrentDirectory+@"\"+path);
             if (!MyDir.Exists)
             {
                 MyDir.Create();
             }
-            string sFilename = @"log\" + DateTime.Now.ToString("hh-mm-ss") + ".saz";
+            string sFilename = path + @"\"+DateTime.Now.ToString("hh-mm-ss") + ".saz";
             try
             {
                 try

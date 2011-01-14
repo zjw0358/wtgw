@@ -4,7 +4,7 @@ using System.Text;
 using System.IO; 
 
 
-namespace Casaba {
+namespace Secsay {
     public class Request : ICloneable{
 
         private string httpMethod;

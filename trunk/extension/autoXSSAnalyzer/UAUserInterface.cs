@@ -8,9 +8,9 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using Fiddler;
-using Casaba;
-using CasabaSecurity.Web.x5s;
-using Equin.ApplicationFramework;
+using Secsay;
+using Secsay.xss;
+using XNMD;
 
 public partial class UAUserInterface : Form{//UserControl {
     

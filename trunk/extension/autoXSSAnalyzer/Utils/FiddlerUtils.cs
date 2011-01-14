@@ -5,10 +5,10 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Reflection;
-using CasabaSecurity.Web.x5s;
+using Secsay.xss;
 using System.Windows.Forms;
 
-namespace Casaba {
+namespace Secsay.xss {
     class FiddlerUtils {
 
         // This instance is responsible for throttling requests to be sent to the remote server via Fiddler.
@@ -60,7 +60,7 @@ namespace Casaba {
         /// </summary>
         /// <param name="?"></param>
         /// <returns></returns>
-        public static void CasabaSessionFiddlerInjector(Casaba.Session s)
+        public static void CasabaSessionFiddlerInjector(Secsay.Session s)
         {
             Fiddler.HTTPRequestHeaders reqHeaders = new Fiddler.HTTPRequestHeaders();
             StringDictionary flags = new StringDictionary();
@@ -85,8 +85,8 @@ namespace Casaba {
             Fiddler.FiddlerApplication.oProxy.InjectCustomRequest(reqHeaders, s.Request.BodyBytes, flags);
         }
 
-        public static void InjectSessions(List<Casaba.Session> sessions) {
-            foreach (Casaba.Session s in sessions) {
+        public static void InjectSessions(List<Secsay.Session> sessions) {
+            foreach (Secsay.Session s in sessions) {
                 m_requestManager.Enqueue(s);
             }
         }

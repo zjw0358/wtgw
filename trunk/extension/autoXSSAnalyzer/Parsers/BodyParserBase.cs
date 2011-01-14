@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Casaba {
+namespace Secsay {
     public abstract class ParserBase {
 
         protected List<string> contentTypePatterns;

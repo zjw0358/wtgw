@@ -1,4 +1,4 @@
-namespace Capture
+namespace XNMD
 {
     using Microsoft.Win32;
     using System;
@@ -23,6 +23,17 @@ namespace Capture
 
     public class Utilities
     {
+        public static byte[] uintToBytes(uint ui)
+        {
+            byte[] buffer = new byte[4];
+            for (int i = 0; i < 4; i++)
+            {
+                buffer[i] = (byte)(ui & 0xff);
+                ui = ui >> 8;
+            }
+            return buffer;
+        }
+
         private const int EM_SETCUEBANNER = 0x1501;
         internal const int LVCF_ORDER = 0x20;
         internal const int LVM_FIRST = 0x1000;
