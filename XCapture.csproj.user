@@ -3,8 +3,8 @@
   <PropertyGroup>
     <PublishUrlHistory>.\publish\|publish\</PublishUrlHistory>
     <InstallUrlHistory />
-    <SupportUrlHistory />
-    <UpdateUrlHistory />
+    <SupportUrlHistory>http://www.secsay.com</SupportUrlHistory>
+    <UpdateUrlHistory>http://www.secsay.com/XNMD/Xcapture/update/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>zh-CN</FallbackCulture>
@@ -13,5 +13,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <EnableSecurityDebugging>false</EnableSecurityDebugging>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DebugSecurityZoneURL>http://www.secsay.com</DebugSecurityZoneURL>
   </PropertyGroup>
 </Project>

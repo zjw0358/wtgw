@@ -8,8 +8,8 @@
     <ProjectGuid>{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Capture</RootNamespace>
-    <AssemblyName>Capture</AssemblyName>
+    <RootNamespace>XNMD</RootNamespace>
+    <AssemblyName>XCapture</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -18,20 +18,24 @@
     <PublishUrl>.\publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
+    <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <ProductName>WTGW</ProductName>
+    <UpdateUrl>http://www.secsay.com/XNMD/Xcapture/update/</UpdateUrl>
+    <SupportUrl>http://www.secsay.com</SupportUrl>
+    <ProductName>XNMD</ProductName>
     <PublisherName>spark</PublisherName>
-    <ApplicationRevision>3</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -55,7 +59,7 @@
     <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Capture.Program</StartupObject>
+    <StartupObject>XNMD.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>57CF7D0C33BB49980CC2A0822E70B31E62F9BC2A</ManifestCertificateThumbprint>
@@ -76,27 +80,26 @@
     <ApplicationIcon>ico.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
+    <TargetZone>Custom</TargetZone>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
-    <Reference Include="CasabaSecurity.Web.UTF8Coder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FiddlerCore, Version=2.3.0.9, Culture=neutral, PublicKeyToken=67cb91587178ac5a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\CasabaSecurity.Web.UTF8Coder.dll</HintPath>
-    </Reference>
-    <Reference Include="Equin.ApplicationFramework.BindingListView, Version=1.1.2416.25731, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Equin.ApplicationFramework.BindingListView.dll</HintPath>
-    </Reference>
-    <Reference Include="FiddlerCore">
       <HintPath>lib\FiddlerCore.dll</HintPath>
     </Reference>
     <Reference Include="Ionic.Zip.Reduced">
       <HintPath>lib\Ionic.Zip.Reduced.dll</HintPath>
-    </Reference>
-    <Reference Include="LoginRecord, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\LoginRecord.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -118,9 +121,28 @@
     <Reference Include="Xceed.Zip">
       <HintPath>lib\Xceed.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="XNMD.BindingListView">
+      <HintPath>lib\XNMD.BindingListView.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Capture.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="extension\UTF8Coder\InvalidCodePointException.cs" />
+    <Compile Include="extension\UTF8Coder\Node.cs" />
+    <Compile Include="extension\UTF8Coder\TreeStatus.cs" />
+    <Compile Include="extension\UTF8Coder\UTF8DecodeContext.cs" />
+    <Compile Include="extension\UTF8Coder\UTF8DecodeContextTree.cs" />
+    <Compile Include="extension\UTF8Coder\UTF8Decoder.cs" />
+    <Compile Include="extension\UTF8Coder\UTF8Encoder.cs" />
+    <Compile Include="extension\UTF8Coder\UTF8StatusCode.cs" />
+    <Compile Include="extension\UTF8Coder\Utilities.cs" />
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="XCapture.cs" />
     <Compile Include="Comman.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="encode\frmTextWizard.cs">
@@ -202,11 +224,6 @@
     <Compile Include="SAZ-DOTNETZIP.cs" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 和 x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -224,24 +241,18 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="extension\autoXSSAnalyzer\ico.ico" />
     <Content Include="extension\autoXSSAnalyzer\MappingsDeclaration.xml" />
-    <Content Include="extension\autoXSSAnalyzer\ShortMappingList.xml" />
-    <Content Include="ico.ico" />
-    <Content Include="lib\CasabaSecurity.Web.UTF8Coder.dll" />
-    <Content Include="lib\CasabaSecurity.Web.UTF8Coder.pdb" />
-    <Content Include="lib\Equin.ApplicationFramework.BindingListView.dll" />
-    <Content Include="lib\Equin.ApplicationFramework.BindingListView.pdb" />
-    <Content Include="lib\FiddlerCore.dll" />
-    <Content Include="lib\Ionic.Zip.Reduced.dll" />
-    <Content Include="lib\LICENSE.TXT" />
-    <Content Include="lib\LICENSE_EQUIN.TXT" />
-    <Content Include="lib\LoginRecord.dll" />
-    <Content Include="lib\Xceed.Compression.dll" />
-    <Content Include="lib\Xceed.Compression.Formats.dll" />
-    <Content Include="lib\Xceed.FileSystem.dll" />
-    <Content Include="lib\Xceed.Zip.dll" />
     <Content Include="makecert.exe" />
+    <Content Include="Readme.txt" />
+    <Content Include="ShortMappingList.xml" />
+    <Content Include="UASettings.xml" />
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ico.ico" />
+    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="encode\frmTextWizard.resx">
@@ -251,6 +262,7 @@
       <DependentUpon>UAUserInterface.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx" />
     <EmbeddedResource Include="hosts\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,9 +271,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <PublishFile Include="extension\autoXSSAnalyzer\MappingsDeclaration.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
