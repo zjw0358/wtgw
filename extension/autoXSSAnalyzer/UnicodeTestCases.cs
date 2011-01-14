@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Casaba;
+using Secsay;
 
-namespace Casaba
+namespace Secsay
 {
     public class UnicodeTestCases : List<UnicodeTestCase>
     {

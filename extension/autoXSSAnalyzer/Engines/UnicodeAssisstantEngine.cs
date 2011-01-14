@@ -5,10 +5,10 @@ using System.Threading;
 using System.IO;
 using System.Web;
 using System.Xml;
-using Casaba;
+using Secsay.xss;
 
 
-namespace Casaba {
+namespace Secsay {
     public class UAEngine {
        
         #region Properties
@@ -50,8 +50,8 @@ namespace Casaba {
         public UAEngine() {
             Matches = new MatchCollection();
             MatchRWLock = new ReaderWriterLock();
-            requestEngine = Casaba.RequestParsingEngine.GetInstance();
-            responseEngine = Casaba.ResponseEngine.GetInstance();
+            requestEngine = Secsay.RequestParsingEngine.GetInstance();
+            responseEngine = Secsay.ResponseEngine.GetInstance();
 
             // Load the configuration options
             this.loadSettings();
@@ -132,7 +132,7 @@ namespace Casaba {
                     
                     if (tc.Type == UnicodeTestCaseTypes.Overlong)
                     {
-                        byte[] bytes = Casaba.UTF8Encoder.GetOverlongForCodePoint(tc.SourcePoint.CodePoint, 2);
+                        byte[] bytes = XNMD.UTF8Encoder.GetOverlongForCodePoint(tc.SourcePoint.CodePoint, 2);
 
                         string enc = HttpUtility.UrlEncode(bytes);
                         replaceValue = new Token(this.Settings.canary + enc);

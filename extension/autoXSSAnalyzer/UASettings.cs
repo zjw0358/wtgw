@@ -5,7 +5,7 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Xml;
 
-namespace Casaba {
+namespace Secsay {
 
     [XmlRoot("UASettings")]
     public class UASettings
@@ -90,8 +90,8 @@ namespace Casaba {
             this.UnicodeTestMappings = XmlMappingLoader.LoadUnicodeCharMappingsFromFile(UAUtilities.GetModuleLocation() + MappingFileName);
         }
        
-        public static void Save(Casaba.UASettings settings){
-            XmlSerializer s = new XmlSerializer(typeof(Casaba.UASettings));
+        public static void Save(Secsay.UASettings settings){
+            XmlSerializer s = new XmlSerializer(typeof(Secsay.UASettings));
             string myDoc = Environment.GetEnvironmentVariable("UserProfile");
             TextWriter w = new StreamWriter(fileName);
             s.Serialize(w, settings);
@@ -100,7 +100,7 @@ namespace Casaba {
 
         public static UASettings Load() {
             UASettings settings;
-            XmlSerializer s = new XmlSerializer(typeof(Casaba.UASettings));
+            XmlSerializer s = new XmlSerializer(typeof(Secsay.UASettings));
             string myDoc = Environment.GetEnvironmentVariable("UserProfile");
             TextReader r = new StreamReader(fileName);
             settings  = (UASettings)s.Deserialize(r);

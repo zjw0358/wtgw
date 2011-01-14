@@ -4,7 +4,7 @@ using System.Text;
 using System.Web;
 using System.Collections;
 
-namespace Casaba
+namespace Secsay
 {
     public class UAUnicodeChar 
     {

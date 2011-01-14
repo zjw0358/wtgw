@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Casaba
+namespace Secsay
 {
     /// <summary>
     /// This class performs logic related to product updates.

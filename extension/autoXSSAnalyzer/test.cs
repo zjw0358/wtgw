@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using Casaba;
+using Secsay;
 
-namespace CasabaSecurity.Web.x5s
+namespace Secsay.xss
 {
     class test
     {

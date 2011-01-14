@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace Casaba {
+namespace Secsay {
     public class NameValueQueryStringParser : ParserBase, IQueryStringParser{
         public NameValueQueryStringParser()
             : base() {

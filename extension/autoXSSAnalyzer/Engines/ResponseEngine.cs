@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace Casaba {
+namespace Secsay {
     public class ResponseEngine {
         private List<IResponseParser> parsers; 
         private static ResponseEngine instance;

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 
-namespace CasabaSecurity.Web.x5s
+namespace Secsay.xss
 {
     /// <summary>
     /// This class is responsible for throttling requests to be sent to the remote
@@ -23,7 +23,7 @@ namespace CasabaSecurity.Web.x5s
 
         private const int THREAD_SHUTDOWN_DELAY = 1000;                                    // Maximum amount of time to wait for the processing thread to shut down
 
-        private Queue<Casaba.Session> m_outstandingRequests = new Queue<Casaba.Session>();  // Queue of pending requests to be sent
+        private Queue<Secsay.Session> m_outstandingRequests = new Queue<Secsay.Session>();  // Queue of pending requests to be sent
         private ManualResetEvent m_signal = new ManualResetEvent(false);                    // Event used to signal the shutdown of the request manager
         private Thread m_thread;                                                            // Thread responsible for processing the queue of outgoing requests
 
@@ -37,6 +37,7 @@ namespace CasabaSecurity.Web.x5s
         {
             Debug.WriteLine("RequestManager initializing...");
             m_thread = new Thread(new ThreadStart(RequestProcessingThread));
+            m_thread.Name = "RequestManage";
             Throttle = true;    // By default, throttling is enabled.
         }
 
@@ -180,7 +181,7 @@ namespace CasabaSecurity.Web.x5s
         /// This method adds a session to the outgoing queue.
         /// </summary>
         /// <param name="session">The session to enqueue.</param>
-        public void Enqueue(Casaba.Session session)
+        public void Enqueue(Secsay.Session session)
         {
             lock (m_outstandingRequests)
             {
@@ -200,7 +201,7 @@ namespace CasabaSecurity.Web.x5s
                 // If we're throttling requests, pause for the user-specified delay interval.
                 // Otherwise, pause for the default delay interval.  If the exit signal has 
                 // been raised during this period, exit.
-                if (m_signal.WaitOne(Throttle ? Delay : DEFAULT_DELAY))
+                if (m_signal.WaitOne(Throttle ? Delay : DEFAULT_DELAY,false))
                     break;
 
                 lock (m_outstandingRequests)
@@ -223,8 +224,8 @@ namespace CasabaSecurity.Web.x5s
                     // Inject the next batch of requests
                     for (int n = 0; n < requestsToInject; ++n)
                     {
-                        Casaba.Session session = m_outstandingRequests.Dequeue();
-                        Casaba.FiddlerUtils.CasabaSessionFiddlerInjector(session);
+                        Secsay.Session session = m_outstandingRequests.Dequeue();
+                        Secsay.xss.FiddlerUtils.CasabaSessionFiddlerInjector(session);
                     }
 
                     Debug.WriteLine(String.Format("{0} sessions remaining in queue.", m_outstandingRequests.Count));

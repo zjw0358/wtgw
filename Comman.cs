@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Capture
+namespace XNMD
 {
     class Comman
     {

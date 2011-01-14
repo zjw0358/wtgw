@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Casaba {
+namespace Secsay {
     /// <summary>
     /// This class represents a token found in the request body. or the body of a response. 
     /// </summary>

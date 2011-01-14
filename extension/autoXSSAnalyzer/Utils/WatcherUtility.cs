@@ -15,9 +15,9 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
-using Casaba;
+using Secsay;
 
-namespace CasabaSecurity.Web.Watcher
+namespace SecsaySecurity.Web.Watcher
 {
     public static class Utility
     {

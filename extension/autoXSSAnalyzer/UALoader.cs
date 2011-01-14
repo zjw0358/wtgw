@@ -7,21 +7,23 @@ using System.Windows;
 using System.Drawing;
 using System.Threading;
 using Fiddler;
+using Secsay.xss;
 
 [assembly: Fiddler.RequiredVersion("2.2.8.1")]
 
 public class UALoader : IAutoTamper, IFiddlerExtension {
 
     
-    Casaba.UAEngine engine;
+    Secsay.UAEngine engine;
     UAUserInterface ui;
     bool setup = true;
+    List<Fiddler.Session> allXSSSessions = new List<Fiddler.Session>();
 
     public UALoader() {
         Fiddler.FiddlerApplication.BeforeRequest += delegate(Fiddler.Session oS)
         {
             //WriteWarning(oS.fullUrl);
-            if (oS.host.EndsWith(Capture.Config.DomainFilter))
+            if (oS.host.EndsWith(XNMD.Config.DomainFilter))
             {
                 this.AutoTamperRequestBefore(oS);
             }
@@ -29,21 +31,21 @@ public class UALoader : IAutoTamper, IFiddlerExtension {
         };
         Fiddler.FiddlerApplication.BeforeResponse += delegate(Fiddler.Session oS)
         {
-            if (oS.host.EndsWith(Capture.Config.DomainFilter))
+            if (oS.host.EndsWith(XNMD.Config.DomainFilter))
             {
                 this.AutoTamperResponseBefore(oS);
             }
         };
     }
-    public void CreateUI(Casaba.UAEngine engine) {
+    public void CreateUI(Secsay.UAEngine engine) {
 
-        Casaba.UAEngine xa = new Casaba.UAEngine();
+        Secsay.UAEngine xa = new Secsay.UAEngine();
         ui = new UAUserInterface(xa);
         Application.Run(ui);
     }
 
     public void OnLoad() {
-        engine = new Casaba.UAEngine();
+        engine = new Secsay.UAEngine();
         //Attempt to create the GUI.
         //CreateUI(engine);
         setup = true;
@@ -51,12 +53,12 @@ public class UALoader : IAutoTamper, IFiddlerExtension {
 
     public void OnBeforeUnload() {
         // Save the configuration options
-        Casaba.UASettings.Save(this.engine.Settings);
+        Secsay.UASettings.Save(this.engine.Settings);
 
         // Shut down the request injection thread
         Console.WriteLine("Cleaning the Request Thread");
-        Casaba.FiddlerUtils.RequestManager.Clear();
-        Casaba.FiddlerUtils.RequestManager.Stop();
+        Secsay.xss.FiddlerUtils.RequestManager.Clear();
+        Secsay.xss.FiddlerUtils.RequestManager.Stop();
     }
 
     // Called before the user can edit a request using the Fiddler Inspectors
@@ -64,15 +66,15 @@ public class UALoader : IAutoTamper, IFiddlerExtension {
         if (this.engine == null || !setup) return;
         if (this.engine.Settings.Enabled)
         {
-            if (oSession.oFlags[Casaba.UASettings.casabaFlag] == null)
+            if (oSession.oFlags[Secsay.UASettings.casabaFlag] == null)
             {
                 if (this.engine.Settings.domainFilterEnabled && this.engine.Settings.filterRequests && UAUtilities.isMatch(this.engine.Settings.domainFilters, oSession.host))
                 {
-                    this.engine.ProcessRequest(Casaba.FiddlerUtils.FiddlerSessionToSession(oSession));
+                    this.engine.ProcessRequest(Secsay.xss.FiddlerUtils.FiddlerSessionToSession(oSession));
                 }
                 else if (!this.engine.Settings.domainFilterEnabled)
                 {
-                    this.engine.ProcessRequest(Casaba.FiddlerUtils.FiddlerSessionToSession(oSession));
+                    this.engine.ProcessRequest(Secsay.xss.FiddlerUtils.FiddlerSessionToSession(oSession));
                 }
             }
         }
@@ -90,7 +92,7 @@ public class UALoader : IAutoTamper, IFiddlerExtension {
         {
             if (this.engine.Settings.domainFilterEnabled && this.engine.Settings.filterResponse && UAUtilities.isMatch(this.engine.Settings.domainFilters, oSession.host))
             {
-                List<Casaba.ResponseResult> results = this.engine.InspectResponse(Casaba.FiddlerUtils.FiddlerSessionToSession(oSession));
+                List<Secsay.ResponseResult> results = this.engine.InspectResponse(Secsay.xss.FiddlerUtils.FiddlerSessionToSession(oSession));
                 if (results.Count > 0)
                 {
                     ui.Invoke(ui.ar, results);
@@ -98,14 +100,23 @@ public class UALoader : IAutoTamper, IFiddlerExtension {
             }
             else if (!this.engine.Settings.domainFilterEnabled)
             {
-                List<Casaba.ResponseResult> results = this.engine.InspectResponse(Casaba.FiddlerUtils.FiddlerSessionToSession(oSession));
+                List<Secsay.ResponseResult> results = this.engine.InspectResponse(Secsay.xss.FiddlerUtils.FiddlerSessionToSession(oSession));
                 if (results.Count > 0)
                 {
-                    foreach(Casaba.ResponseResult rr in results)
+                    foreach(Secsay.ResponseResult rr in results)
                     {
-                        if (rr.Transformation == Casaba.Transformation.None)
+                        if (rr.Transformation == Secsay.Transformation.None)
                         {
-                            Capture.Comman.WriteWarning("xss  url£º" + oSession.fullUrl);
+                            if (!allXSSSessions.Contains(oSession))
+                            {
+                                List<Fiddler.Session> XSSSessions = new List<Fiddler.Session>();
+                                XSSSessions.Add(oSession);
+                                XNMD.Comman.WriteWarning("xss  url£º" + oSession.fullUrl);
+                                XNMD.MySession.SaveSessionsTo(XSSSessions, @"XSSresult");
+                            }
+                            Monitor.Enter(allXSSSessions);
+                            allXSSSessions.Add(oSession);
+                            Monitor.Exit(allXSSSessions);
                         }
                         //Capture.Comman.WriteWarning("type:" + rr.Transformation.ToString() + " xss  url£º" + oSession.fullUrl);
                     }

@@ -1,4 +1,4 @@
-namespace Capture
+namespace XNMD
 {
     using System;
     using System.Runtime.CompilerServices;

@@ -1,4 +1,4 @@
-namespace Capture
+namespace XNMD
 {
     using Microsoft.VisualBasic;
     using Microsoft.Win32;

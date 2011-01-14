@@ -4,7 +4,7 @@ partial class UAUserInterface {
     /// Required designer variable.
     /// </summary>
     private System.ComponentModel.IContainer components = null;
-    private Casaba.UAEngine xa;
+    private Secsay.UAEngine xa;
     
     /// <summary> 
     /// Clean up any resources being used.
@@ -421,7 +421,7 @@ partial class UAUserInterface {
         // 
         // responseResultBindingSource
         // 
-        this.responseResultBindingSource.DataSource = typeof(Casaba.ResponseResult);
+        this.responseResultBindingSource.DataSource = typeof(Secsay.ResponseResult);
         // 
         // panel3
         // 
@@ -1045,7 +1045,7 @@ partial class UAUserInterface {
         // 
         // UAUnicodeCharMappingBindingSource
         // 
-        this.UAUnicodeCharMappingBindingSource.DataSource = typeof(Casaba.UnicodeTestCase);
+        this.UAUnicodeCharMappingBindingSource.DataSource = typeof(Secsay.UnicodeTestCase);
         // 
         // UAUserInterface
         // 

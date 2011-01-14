@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Casaba {
+namespace Secsay {
 
     /// <summary>
     /// So auto request parser is our bread and butter class.. This is responsable for handling custom request parsers, QuertyString parsers, header parsers or body parsers...

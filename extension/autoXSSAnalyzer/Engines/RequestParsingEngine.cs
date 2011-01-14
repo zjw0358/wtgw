@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-//using Casaba.AutoDecoder;
+//using Secsay.AutoDecoder;
 
 
-namespace Casaba {
+namespace Secsay {
     public class RequestParsingEngine {
         private List<IRequestParser> parsers;
 

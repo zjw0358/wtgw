@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Casaba
+namespace Secsay
 {
     [Flags]
     public enum UnicodeTestCaseTypes

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Casaba {
+namespace Secsay {
     public class ResponseParser : IResponseParser{
         public MatchCollection InspectResponse(Session s, Token t) {
             MatchCollection retList = new MatchCollection();
