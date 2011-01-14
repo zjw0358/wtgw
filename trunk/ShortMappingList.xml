@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UnicodeTestMappings>
+
+  <UnicodeTestMapping Type="Traditional">
+    <Target>
+      <UnicodeChar Name="U+003E GREATER-THAN SIGN &gt;" CodePoint="003e" />
+    </Target>
+    <Source>
+      <UnicodeChar Name="U+003E GREATER-THAN SIGN &gt;" CodePoint="003e" />
+    </Source>
+    <Description>'Traditional Test Case'
+    
+This traditional test case for XSS will inject an ASCII character &gt;.  If this character is not securely encoded on output, then you may be able to control the HTML and inject script.  
+    </Description>
+  </UnicodeTestMapping>
+
+
+</UnicodeTestMappings>

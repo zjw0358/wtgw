@@ -21,7 +21,7 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 
 
-namespace Capture
+namespace XNMD
 {
     class Program:Comman
     {
@@ -156,7 +156,7 @@ namespace Capture
                 }
 #if SAZ_SUPPORT                
                 if ( oAllSessions.Count> Config.MaxLogLength){
-                	MySession.SaveSessionsToDesktop(oAllSessions);
+                	MySession.SaveSessionsTo(oAllSessions,@"log\");
                 	Monitor.Enter(oAllSessions);
                     oAllSessions.Clear();
                     Monitor.Exit(oAllSessions);
@@ -230,12 +230,15 @@ namespace Capture
                 WriteWarning(""+Config.DomainFilter);
             }
 
-
+            //begin xss detect when start
+            ualoader = new UALoader();
+            Console.WriteLine("starting xss detect.....\nuse your ie or chrome to browser your web page\n");
+            ualoader.OnLoad();
             bool mDone = false;
             
             do
             {
-                WriteHelp("\nCommand:\n[P=Penetration testing;C=Clear cache;D=Domain config; L=List session; G=Collect Garbage;\nH=Hosts config; w=Write SAZ;R=reload SAZ; S=Toggle Forgetful Streaming; t=Toggle Title Counter; Q=Quit]:");
+                WriteHelp("\nCommand:\n[D=Domain config;C=Clear cache; L=List session;  Q=Quit;G=Collect Garbage;\nH=Hosts config; w=Write SAZ;R=reload SAZ; S=Toggle Forgetful Streaming; t=Toggle Title Counter;P=Penetration testing;]:");
                 Console.Write("main>");
                 ConsoleKeyInfo cki = Console.ReadKey();
                 Console.WriteLine();
@@ -309,7 +312,7 @@ namespace Capture
 #if SAZ_SUPPORT
                         if (oAllSessions.Count > 0)
                         {
-                            MySession.SaveSessionsToDesktop(oAllSessions);
+                            MySession.SaveSessionsTo(oAllSessions,@"log\");
                             Monitor.Enter(oAllSessions);
                             oAllSessions.Clear();
                             Monitor.Exit(oAllSessions);
@@ -337,6 +340,14 @@ namespace Capture
                         Console.WriteLine(bForgetful ? "FiddlerCore will immediately dump streaming response data." : "FiddlerCore will keep a copy of streamed response data.");
                         break;
 
+                    //case 'x':
+
+                    //    ualoader = new UALoader();
+                    //    Console.WriteLine("starting xss detect.....");
+                    //    ualoader.OnLoad();
+                    //    //ualoader.OnBeforeUnload();
+                    //    break;
+                    /*
                     case 'p':
                         bool pDone = false;
                         do
@@ -379,6 +390,7 @@ namespace Capture
                             }
                         } while (!pDone);
                         break;
+                     */
 
 
 
