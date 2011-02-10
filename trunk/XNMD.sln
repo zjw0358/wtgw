@@ -1,18 +1,39 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XCapture", "XCapture.csproj", "{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "XNMD", "Setup\Setup.vdproj", "{73347DE8-00DE-4BDE-BB3B-0F2B776417F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|x86 = CD_ROM|x86
 		Debug|x86 = Debug|x86
+		DVD-5|x86 = DVD-5|x86
 		Release|x86 = Release|x86
+		SingleImage|x86 = SingleImage|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}.CD_ROM|x86.ActiveCfg = Release|x86
+		{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}.CD_ROM|x86.Build.0 = Release|x86
 		{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}.Debug|x86.ActiveCfg = Debug|x86
 		{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}.Debug|x86.Build.0 = Debug|x86
+		{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}.DVD-5|x86.ActiveCfg = Debug|x86
+		{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}.DVD-5|x86.Build.0 = Debug|x86
 		{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}.Release|x86.ActiveCfg = Release|x86
 		{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}.Release|x86.Build.0 = Release|x86
+		{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}.SingleImage|x86.ActiveCfg = Release|x86
+		{DC4DC0CA-87B5-4942-BE5E-4BCD988EA22E}.SingleImage|x86.Build.0 = Release|x86
+		{73347DE8-00DE-4BDE-BB3B-0F2B776417F5}.CD_ROM|x86.ActiveCfg = Release
+		{73347DE8-00DE-4BDE-BB3B-0F2B776417F5}.CD_ROM|x86.Build.0 = Release
+		{73347DE8-00DE-4BDE-BB3B-0F2B776417F5}.Debug|x86.ActiveCfg = Debug
+		{73347DE8-00DE-4BDE-BB3B-0F2B776417F5}.Debug|x86.Build.0 = Debug
+		{73347DE8-00DE-4BDE-BB3B-0F2B776417F5}.DVD-5|x86.ActiveCfg = Debug
+		{73347DE8-00DE-4BDE-BB3B-0F2B776417F5}.DVD-5|x86.Build.0 = Debug
+		{73347DE8-00DE-4BDE-BB3B-0F2B776417F5}.Release|x86.ActiveCfg = Release
+		{73347DE8-00DE-4BDE-BB3B-0F2B776417F5}.Release|x86.Build.0 = Release
+		{73347DE8-00DE-4BDE-BB3B-0F2B776417F5}.SingleImage|x86.ActiveCfg = Release
+		{73347DE8-00DE-4BDE-BB3B-0F2B776417F5}.SingleImage|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

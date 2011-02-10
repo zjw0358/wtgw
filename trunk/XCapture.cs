@@ -30,7 +30,6 @@ namespace XNMD
         static string sSecureEndpointHostname = "localhost";
         static UALoader ualoader = null;
         
-
         public static void DoQuit()
         {
             WriteCommandResponse("Shutting down...");
@@ -41,20 +40,16 @@ namespace XNMD
             Thread.Sleep(500);
         }
 
-
         [STAThread]
         static void Main(string[] args)
         {
             WriteHelp("Current hosts in system is :");
-            Config.LoadHosts();
+            Config.LoadHosts();//print hosts lists
+
             //Config.AddHost("211.82.8.7", "c.com", "test", false,false);
-            Config.SetConfig();
-            
-
-
+            Config.SetConfig();//init to set config
 
             List<Fiddler.Session> oAllSessions = new List<Fiddler.Session>();
-
 
             //if (args.Length == 0){
            //Config.DomainFilter =  "renren.com";
@@ -156,7 +151,9 @@ namespace XNMD
                 }
 #if SAZ_SUPPORT                
                 if ( oAllSessions.Count> Config.MaxLogLength){
-                	MySession.SaveSessionsTo(oAllSessions,@"log\");
+                    //save log 
+                	//MySession.SaveSessionsTo(oAllSessions,@"log\");
+                    //clear mem
                 	Monitor.Enter(oAllSessions);
                     oAllSessions.Clear();
                     Monitor.Exit(oAllSessions);
@@ -230,6 +227,7 @@ namespace XNMD
                 WriteWarning(""+Config.DomainFilter);
             }
 
+            //XNMD.F.Show("test");
             //begin xss detect when start
             ualoader = new UALoader();
             Console.WriteLine("starting xss detect.....\nuse your ie or chrome to browser your web page\n");
@@ -238,7 +236,7 @@ namespace XNMD
             
             do
             {
-                WriteHelp("\nCommand:\n[D=Domain config;C=Clear cache; L=List session;  Q=Quit;G=Collect Garbage;\nH=Hosts config; w=Write SAZ;R=reload SAZ; S=Toggle Forgetful Streaming; t=Toggle Title Counter;P=Penetration testing;]:");
+                WriteHelp("\nCommand:\n[d=Domain config;c=Clear cache; L=List session;  q=Quit;g=Collect Garbage;\nh=Hosts config; w=Write SAZ;r=reload SAZ; s=Toggle Forgetful Streaming; t=Toggle Title Counter;e=encode tool;]:");
                 Console.Write("main>");
                 ConsoleKeyInfo cki = Console.ReadKey();
                 Console.WriteLine();
@@ -339,6 +337,11 @@ namespace XNMD
                         FiddlerApplication.Prefs.SetBoolPref("fiddler.network.streaming.ForgetStreamedData", bForgetful);
                         Console.WriteLine(bForgetful ? "FiddlerCore will immediately dump streaming response data." : "FiddlerCore will keep a copy of streamed response data.");
                         break;
+                    case 'e':
+                        frmTextWizard wizard = new frmTextWizard();
+                        //wizard.Show();
+                        Application.Run(wizard);
+                        break;
 
                     //case 'x':
 
@@ -373,11 +376,7 @@ namespace XNMD
                                 //    //LoginRecord.msgbox("hello");
                                 //    LoginRecord.Browser(url);
                                 //    break;
-                                case 'e':
-                                    frmTextWizard wizard = new frmTextWizard();
-                                    //wizard.Show();
-                                    Application.Run(wizard);
-                                    break;
+                                
                                 case 'x':
 
                                     ualoader = new UALoader();

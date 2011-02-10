@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("XNMD")]
 [assembly: AssemblyDescription("XSS Network Manipulation Detector")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Secsay")]
+[assembly: AssemblyCompany("Secsay.com")]
 [assembly: AssemblyProduct("XCapture")]
 [assembly: AssemblyCopyright("Copyright ©  2011")]
 [assembly: AssemblyTrademark("Secsay")]

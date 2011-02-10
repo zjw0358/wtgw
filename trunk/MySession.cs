@@ -54,7 +54,7 @@ namespace XNMD
             {
                 MyDir.Create();
             }
-            string sFilename = path + @"\"+DateTime.Now.ToString("hh-mm-ss") + ".saz";
+            string sFilename = path + @"\"+DateTime.Now.ToString("hh-mm-ss") + ".saz.zip";
             try
             {
                 try
