@@ -10,7 +10,7 @@ namespace XNMD
     {
         public static int Port = 8877;
         public static string DomainFilter = "";
-        public static int MaxLogLength = 200;
+        public static int MaxLogLength = 500;
         public static string strConfFileName = @"config.main";
         public static XmlDocument Conf;
         public static void SetConfig()
@@ -41,12 +41,12 @@ namespace XNMD
                 Port = int.Parse(confPort.InnerText);
                 confRoot.AppendChild(confPort);
 
-                XmlElement confMaxLogLength = Conf.CreateElement("maxloglength");
-                Program.WriteTest("Input a length auto save to disk,default is 200");
-                confMaxLogLength.InnerText = Console.ReadLine();
-                if (confMaxLogLength.InnerText == "") { confMaxLogLength.InnerText = "200"; }
-                MaxLogLength = int.Parse(confMaxLogLength.InnerText);
-                confRoot.AppendChild(confMaxLogLength);
+                //XmlElement confMaxLogLength = Conf.CreateElement("maxloglength");
+                //Program.WriteTest("Input a length auto save to disk,default is 200");
+                //confMaxLogLength.InnerText = Console.ReadLine();
+                //if (confMaxLogLength.InnerText == "") { confMaxLogLength.InnerText = "200"; }
+                //MaxLogLength = int.Parse(confMaxLogLength.InnerText);
+                //confRoot.AppendChild(confMaxLogLength);
 
                 Conf.Save(strConfFileName);
 

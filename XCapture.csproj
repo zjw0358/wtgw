@@ -26,16 +26,16 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
     <UpdateUrl>http://www.secsay.com/XNMD/Xcapture/update/</UpdateUrl>
-    <SupportUrl>http://www.secsay.com</SupportUrl>
+    <SupportUrl>http://secsay.com</SupportUrl>
     <ProductName>XNMD</ProductName>
     <PublisherName>spark</PublisherName>
     <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
-    <BootstrapperEnabled>false</BootstrapperEnabled>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -68,10 +68,10 @@
     <ManifestKeyFile>Capture_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
@@ -93,6 +93,15 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>miyue.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FiddlerCore, Version=2.3.0.9, Culture=neutral, PublicKeyToken=67cb91587178ac5a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -204,19 +213,19 @@
     <Compile Include="extension\IFiddlerExtension.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="hosts\ConfigForm.cs">
+    <Compile Include="extension\hosts\ConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="hosts\Form1.cs">
+    <Compile Include="extension\hosts\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="hosts\HelpForm.cs">
+    <Compile Include="extension\hosts\HelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="hosts\HostItem.cs">
+    <Compile Include="extension\hosts\HostItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="hosts\HostsDal.cs">
+    <Compile Include="extension\hosts\HostsDal.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MySession.cs" />
@@ -241,12 +250,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="extension\autoXSSAnalyzer\MappingsDeclaration.xml" />
     <Content Include="makecert.exe" />
     <Content Include="Readme.txt" />
     <Content Include="ShortMappingList.xml" />
     <Content Include="UASettings.xml" />
     <None Include="app.config" />
+    <None Include="miyue.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
@@ -263,25 +272,14 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx" />
-    <EmbeddedResource Include="hosts\Form1.resx">
+    <EmbeddedResource Include="extension\hosts\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="hosts\HelpForm.resx">
+    <EmbeddedResource Include="extension\hosts\HelpForm.resx">
       <DependentUpon>HelpForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <PublishFile Include="extension\autoXSSAnalyzer\MappingsDeclaration.xml">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
